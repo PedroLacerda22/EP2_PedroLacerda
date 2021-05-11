@@ -1,11 +1,11 @@
 # Novo plano é tentar fazer o jogo funcionar antes de implementar as coisasque fazem ele ficar bonito.
 
 # Importa as bibliotecas necessárias:
-from cria_baralho import cria_baralho as cb # funcionando; args=(), retorna umbaralho de 52 cartas em ordem aleatória
-from extrai_naipe import extrai_naipe as ex_np # funcionando; args=(carta) retorna o naipe de uma carta
-from extrai_valor import extrai_valor as ex_val # funcionando; args=(carta) retorna o valor numérico de uma carta
+
+from cria_baralho import cria_baralho as cb # funcionando; args=(), retorna um baralho de 52 cartas em ordem aleatória
 from possiveis_movimentos import lista_movimentos_possiveis as mov_pos # funcionando; args=(baralho, índice) retorna os movimentos possíveis para uma determinada carta
 from empilha import empilha as emp # funcionando mas tá um pouco confuso; args=(baralho, posição inicial, posição de destino), retorna o baralho após o empilhamento de uma carta
+from mostra_baralho import mostra_cartas as mc # status? args=(baralho), mostra o baralho no terminal
 # A função que checa se ainda existem movimentos no baralho retorna False quando implementada agora. Ela será chamada posteriormente.
 
 # Agora para iniciar o jogo:
@@ -31,18 +31,7 @@ while jogando:
         print('Sem movimentos restantes. Fim do jogo.')
     # Para mostrar uma carta por linha, mostrando seu respectivo índice:
 
-    for carta in b_jogo:
-        indice_da_carta = b_jogo.index(carta)
-        if indice_da_carta < 10: 
-            ind = " {0}. ".format(indice_da_carta + 1)
-        else:
-            ind = "{0}. ".format(indice_da_carta + 1)
-
-        valor_da_carta = ex_val(carta)
-        if valor_da_carta == "10":
-            print(ind + carta)
-        else:
-            print(ind + " " + carta)
+    print(mc(b_jogo))
 
     selecao = True
     while selecao:
@@ -68,7 +57,7 @@ while jogando:
                     # Se só é possível mover a carta para o vizinho anterior
                     b_novo = emp(b_jogo, indice_carta, b_jogo.index(b_jogo[indice_carta]) - 1)
                     b_jogo = b_novo
-                    print(b_jogo)
+                    print(mc(b_jogo))
                     print("A carta foi empilhada em seu vizinho anterior")
                     
                     # A carta é automaticamente empilhada e o baralho é atualizado de acordo.
@@ -76,7 +65,7 @@ while jogando:
                 elif indice_carta_mov[0] == 3:
                     b_novo = emp(b_jogo, indice_carta, b_jogo.index(b_jogo[indice_carta]) - 3)
                     b_jogo = b_novo
-                    print(b_jogo)
+                    print(mc(b_jogo))
                     print("A carta foi empilhada em seu 3º vizinho anterior")
                     # A carta é automaticamente empilhada e o baralho é atualizado de acordo.
 
@@ -89,13 +78,13 @@ while jogando:
                 if qual_emp == 1:
                     b_novo = emp(b_jogo, b_jogo.index(indice_carta), b_jogo.index(b_jogo[indice_carta]) - 1)
                     b_jogo = b_novo
-                    print(b_jogo)
+                    print(mc(b_jogo))
                     print("A carta foi empilhada em seu vizinho anterior")
 
                 elif qual_emp == 3:
                     b_novo = emp(b_jogo, indice_carta, b_jogo.index(b_jogo[indice_carta]) - 3)
                     b_jogo = b_novo
-                    print(b_jogo)
+                    print(mc(b_jogo))
                     print("A carta foi empilhada em seu 3º vizinho anterior")
 
                     # talvez de pra encurtar esses if elif statements.

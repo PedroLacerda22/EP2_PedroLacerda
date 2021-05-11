@@ -1,4 +1,6 @@
 def mostra_cartas(baralho_atual):
+    from extrai_naipe import extrai_naipe as ex_np
+    from extrai_valor import extrai_valor as ex_val
     c_col = [] # cartas coloridas 
 
     for c_branca in baralho_atual:
