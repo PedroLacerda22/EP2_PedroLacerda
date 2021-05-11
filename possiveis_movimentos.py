@@ -1,4 +1,6 @@
 def lista_movimentos_possiveis(baralho, index):
+    from extrai_naipe import extrai_naipe as ex_np
+    from extrai_valor import extrai_valor as ex_val
     c_sel = baralho[index] # carta selecionada do baralho
     val_carta = ex_val(c_sel)
     v1 = ex_val(baralho[index - 1])
